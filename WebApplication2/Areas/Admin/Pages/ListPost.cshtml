@@ -1,0 +1,59 @@
+﻿@page
+@model WebApplication2.Areas.Admin.Pages.ListPostModel
+
+@{
+    ViewData["Title"] = "ListPost";
+}
+
+<h1>ListPost</h1>
+
+<p>
+    <a asp-page="CreatePost">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Posts[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posts[0].SubTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posts[0].Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posts[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posts[0].Date_of_publish)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Posts) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_of_publish)
+            </td>
+            <td>
+                <a class="btn btn-dark" asp-page="./EditPost" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-danger" asp-page="./DeletePost" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="flex">
+    
+    @if (Model.Post.Count >= 9)
+    {
+        <div class="post-grid">
+            @for (int i = 0; i < 9; i++)
+            {
+                string className = "post" + (i+1);
+                <div class="@className post">
+                    <a asp-page="/DetailsPost" asp-route-id="@Model.Post[i].Id">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.Post[i].Title</h5>
+                                <p class="card-text">@Model.Post[i].SubTitle</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                @Model.Post[i].Date_of_publish.Day.@Model.Post[i].Date_of_publish.Month.@Model.Post[i].Date_of_publish.Year
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+    }
+    else
+    {
+        @foreach (var item in Model.Post)
+        {
+            <div class="card text-center mb-3 post">
+                <a asp-page="/DetailsPost" asp-route-id="@item.Id">
+                    @if (item == Model.Post[0])
+                    {
+                        <div class="card-header">
+                            Nejnovější
+                        </div>
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Text</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        @item.Date_of_publish.Day.@item.Date_of_publish.Month.@item.Date_of_publish.Year
+                    </div>
+                </a>
+            </div>
+        }
+    }
+    <div class="tournament-grid">
+        <h5>Turnaje</h5>
+        <h6>Proběhlé</h6>
+        <div>
+            @foreach (var item in Model.FinishedTournament)
+            {
+                <a asp-page="/DetailsTournament" asp-route-id="@item.Id">@item.Tournament_name</a>
+            }
+        </div>
+        <h6>Neproběhlé</h6>
+        <div>
+            @foreach (var item in Model.UnfinishedTournament)
+            {
+                <a asp-page="/DetailsTournament" asp-route-id="@item.Id">@item.Tournament_name</a>
+            }
+        </div>
+    </div>
+</div>

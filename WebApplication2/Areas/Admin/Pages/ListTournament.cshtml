@@ -1,0 +1,53 @@
+﻿@page
+@model WebApplication2.Areas.Admin.Pages.ListTournamentModel
+
+@{
+    ViewData["Title"] = "ListTournament";
+}
+
+<h1>ListTournament</h1>
+
+<p>
+    <a asp-page="CreateTournament">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tournaments[0].Tournament_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tournaments[0].Info_box)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tournaments[0].Date_of_publish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tournaments[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tournaments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tournament_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info_box)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_of_publish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                <a class="btn btn-dark" asp-page="./EditTournament" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-danger" asp-page="./DeleteTournament" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

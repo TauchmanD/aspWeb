@@ -1,0 +1,55 @@
+﻿@page
+@model WebApplication2.Areas.Admin.Pages.EditPostModel
+
+@{
+    ViewData["Title"] = "EditPost";
+}
+
+<h1>EditPost</h1>
+
+<h4>Posts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Posts.Id" />
+            <div class="form-group">
+                <label asp-for="Posts.Title" class="control-label"></label>
+                <input asp-for="Posts.Title" class="form-control" />
+                <span asp-validation-for="Posts.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posts.SubTitle" class="control-label"></label>
+                <input asp-for="Posts.SubTitle" class="form-control" />
+                <span asp-validation-for="Posts.SubTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posts.Text" class="control-label"></label>
+                <textarea rows="12" cols="100" asp-for="Posts.Text" class="form-control"></textarea>
+                <span asp-validation-for="Posts.Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posts.UserId" class="control-label"></label>
+                <select asp-for="Posts.UserId" class="form-control" asp-items="@Model.UsersList"></select>
+                <span asp-validation-for="Posts.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posts.Date_of_publish" class="control-label"></label>
+                <input asp-for="Posts.Date_of_publish" class="form-control" />
+                <span asp-validation-for="Posts.Date_of_publish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./ListPost">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

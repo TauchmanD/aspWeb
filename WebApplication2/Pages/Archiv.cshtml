@@ -1,0 +1,24 @@
+﻿@page
+@model WebApplication2.Pages.ArchivModel
+@{
+}
+<h1>Archiv</h1>
+@foreach (var item in Model.Post)
+{
+<div class="card text-center mb-3 post">
+    <a asp-page="/DetailsPost" asp-route-id="@item.Id">
+        @if (item == Model.Post[0])
+        {
+<div class="card-header">
+    Nejnovější
+</div>}
+
+        <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">@item.SubTitle</p>
+        </div>
+        <div class="card-footer text-muted">
+            @item.Date_of_publish.Day.@item.Date_of_publish.Month.@item.Date_of_publish.Year
+        </div>
+    </a>
+</div>}

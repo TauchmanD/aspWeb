@@ -1,0 +1,21 @@
+﻿@page
+@model WebApplication2.Pages.DetailsTournamentModel
+
+@{
+    ViewData["Title"] = "DetailsTournament";
+}
+
+<h1>@Model.Tournaments.Tournament_name</h1>
+
+<div>
+    <hr />
+    <textarea rows="12" cols="100">
+    @Html.DisplayFor(model => model.Tournaments.Info_box)
+    </textarea>
+    <p>
+        @Html.DisplayFor(model => model.Tournaments.User.UserName) - @Html.DisplayFor(model => model.Tournaments.Date_of_publish.Day).@Html.DisplayFor(model => model.Tournaments.Date_of_publish.Month).@Html.DisplayFor(model => model.Tournaments.Date_of_publish.Year)
+    </p>
+</div>
+<div>
+    <a asp-page="./Index">Zpět</a>
+</div>
